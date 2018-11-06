@@ -40,13 +40,26 @@
       text-align: center;
     }
     #homepageCarousel {
-      opacity: 0.25;
+      height: 100%;
+      opacity: 0.75;
     }
     .carousel-inner {
       z-index: -999;
     }
     .carousel-item img {
       object-fit: cover;
+      opacity: 0.25;
+    }
+    .carousel-indicators li {
+      background: #D5AE76;
+      border-radius: 100%;
+      height: 10px;
+      opacity: 0.5;
+      width: 10px;
+    }
+    .carousel-indicators li.active {
+      background: #D5AE76;
+      opacity: 1;
     }
 
     #headerContainer {
@@ -186,6 +199,9 @@
       #headerText {
         font-size: 2rem;
       }
+      .carousel-item img {
+        height: 100%;
+      }
       .serviceHeaderDivider {
         width: 90%;
       }
@@ -207,7 +223,7 @@
 {% block outer_content %}
   <div id="outerContent">
     <div class="jumbotron">
-      <!-- <div id="homepageCarousel" class="carousel slide" data-ride="carousel">
+      <div id="homepageCarousel" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
           {% for slide in slides %}
             <li data-target="#homepageCarousel" data-slide-to="{{ forloop.counter0 }}" class="{% if forloop.first %}active{% endif %}"></li>
@@ -220,7 +236,7 @@
             </div>
           {% endfor %}
         </div>
-      </div> -->
+      </div>
       <div id="headerContainer">
         <h1 id="headerText" class="display-4 neutraBold">
           {{ config.HOMEPAGE_TITLE|linebreaksbr }}
