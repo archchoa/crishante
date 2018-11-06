@@ -3,6 +3,7 @@
 <html>
   <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     {% block styles %}
       <style type="text/css">
       @font-face {
@@ -45,6 +46,12 @@
         line-height: 80px;
         vertical-align: middle;
       }
+      .navbar-toggler {
+        border: 0px;
+      }
+      .navbar-toggler .fas {
+        color: #D5AE76;
+      }
       #logo {
         height: 70px;
         margin-left: 75px;
@@ -81,6 +88,21 @@
         font-family: "Neutra Book";
         line-height: 50px;
       }
+      @media (max-width: 992px) {
+        .navbar-nav li {
+          background: #fff;
+          margin-left: 0px;
+          margin-right: 0px;
+          text-align: center;
+        }
+        .navbar-nav li.active {
+          border-bottom: 0px;
+          text-decoration: underline;
+        }
+        .navbar-toggler {
+          margin-right: 12px;
+        }
+      }
       </style>
     {% endblock %}
   </head>
@@ -90,7 +112,7 @@
         <img src="{% static 'images/logo.png' %}" id="logo">
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+        <i class="fas fa-bars"></i>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto">
@@ -130,6 +152,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     {% block scripts %}
+      <script type="text/javascript">
+        $(document).ready(function(e) {
+          $(".navbar").on('show.bs.collapse', function() {
+            $("#content").hide();
+          });
+          $(".navbar").on('hide.bs.collapse', function() {
+            $("#content").show();
+          });
+        });
+      </script>
     {% endblock %}
   </body>
 </html>
