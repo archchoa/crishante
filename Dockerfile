@@ -23,13 +23,12 @@ RUN cd /tmp && pip install -r requirements.txt
 RUN mkdir -p /var/apps/crishante
 ADD /static /var/apps/crishante/staticfiles
 
-RUN mkdir -p /var/apps/crishante/media
-RUN mkdir -p /var/apps/crishante/media/images
+RUN mkdir -p /var/www/media && chown -R crishante /var/www/media/ && chmod -R u+rX /var/www/media/
 
 RUN groupadd varwwwusers
 RUN adduser www-data varwwwusers
-RUN chgrp -R varwwwusers /var/www/media
-RUN chmod -R 760 /var/www/media
+RUN chgrp -R varwwwusers /var/www/media/
+RUN chmod -R 760 /var/www/media/
 
 WORKDIR /var/apps/crishante
 
