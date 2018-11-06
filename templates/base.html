@@ -2,6 +2,7 @@
 {% load static %}
 <html>
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     {% block styles %}
@@ -61,6 +62,9 @@
         height: 30px;
         margin: 0 auto;
       }
+      #mobileLogo {
+        height: 50px;
+      }
       /* End Navbar */
       #content {
         margin-top: 140px;
@@ -89,6 +93,10 @@
         line-height: 50px;
       }
       @media (max-width: 992px) {
+        #logo {
+          height: 50px;
+          margin-left: 12px;
+        }
         .navbar-nav li {
           background: #fff;
           margin-left: 0px;
@@ -116,6 +124,11 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto">
+          <li class="nav-item {% active_link 'home' %}" id="mobileLogoContainer">
+            <a class="nav-link" href="{% url 'home' %}">
+              <img src="{% static 'images/logo.png' %}" id="mobileLogo">
+            </a>
+          </li>
           <li class="nav-item {% active_link 'home' %}">
             <a class="nav-link" href="{% url 'home' %}">Home</a>
           </li>
@@ -156,9 +169,13 @@
         $(document).ready(function(e) {
           $(".navbar").on('show.bs.collapse', function() {
             $("#content").hide();
+            $("#logo").css('visibility', 'hidden');
+            $("#mobileLogoContainer").show();
           });
           $(".navbar").on('hide.bs.collapse', function() {
             $("#content").show();
+            $("#logo").css('visibility', 'visible');
+            $("#mobileLogoContainer").hide();
           });
         });
       </script>
