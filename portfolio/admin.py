@@ -1,19 +1,22 @@
 from django.contrib import admin
 
+from adminsortable.admin import SortableAdmin
+from adminsortable.admin import SortableTabularInline
+
 from .models import Photo
 from .models import Portfolio
 from .models import Work
 
 
-class PhotoInline(admin.TabularInline):
+class PhotoInline(SortableTabularInline):
     model = Photo
 
 
-class PortfolioAdmin(admin.ModelAdmin):
+class PortfolioAdmin(SortableAdmin):
     list_display = ('title', 'slug', 'description')
 
 
-class WorkAdmin(admin.ModelAdmin):
+class WorkAdmin(SortableAdmin):
     inlines = [
         PhotoInline,
     ]

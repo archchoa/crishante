@@ -1,14 +1,17 @@
 from django.contrib import admin
 
+from adminsortable.admin import SortableAdmin
+from adminsortable.admin import SortableTabularInline
+
 from .models import Photo
 from .models import Section
 
 
-class PhotoInline(admin.TabularInline):
+class PhotoInline(SortableTabularInline):
     model = Photo
 
 
-class SectionAdmin(admin.ModelAdmin):
+class SectionAdmin(SortableAdmin):
     inlines = [
         PhotoInline,
     ]
