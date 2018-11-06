@@ -5,6 +5,7 @@
 #    pip-compile --output-file requirements.txt requirements.in
 #
 django-active-link==0.1.5
+django-admin-sortable==2.1.9
 django-constance==2.3.1
 django-contact-form==1.6
 django-debug-toolbar==1.9.1
