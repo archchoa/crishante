@@ -24,11 +24,14 @@ RUN mkdir -p /var/apps/crishante
 ADD /static /var/apps/crishante/staticfiles
 
 RUN mkdir -p /var/apps/crishante/media
+RUN mkdir -p /var/apps/crishante/media/images
 
 RUN groupadd varwwwusers
 RUN adduser www-data varwwwusers
 RUN chgrp -R varwwwusers /var/apps/crishante/media
+RUN chgrp -R varwwwusers /var/apps/crishante/media/images
 RUN chmod -R 760 /var/apps/crishante/media
+RUN chmod -R 760 /var/apps/crishante/media/images
 
 WORKDIR /var/apps/crishante
 
