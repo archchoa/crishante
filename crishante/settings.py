@@ -96,7 +96,9 @@ WSGI_APPLICATION = 'crishante.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
-DATABASES = env.db()
+DATABASES = {
+    'default': env.db()
+}
 
 
 # Password validation
