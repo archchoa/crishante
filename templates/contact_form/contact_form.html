@@ -1,11 +1,15 @@
 {% extends 'base.html' %}
 
+{% load static %}
 {% load staticfiles %}
 {% load widget_tweaks %}
 
 {% block styles %}
   {{ block.super }}
   <style type="text/css">
+    #content {
+      margin-top: 100px;
+    }
     #header {
       color: rgba(0, 0, 0, 0.8);
       font-size: 1.85rem;
@@ -39,7 +43,7 @@
       margin-top: 48px;
     }
     .customFormControl {
-      border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+      border-bottom: 2px solid rgba(0, 0, 0, 0.25);
       border-left: 0px;
       border-right: 0px;
       border-top: 0px;
@@ -62,7 +66,7 @@
       width: 100%;
     }
     #contactBgImage {
-      background: url({% static 'images/contact.jpg' %});
+      background: url({% get_media_prefix %}{{ config.CONTACT_IMAGE }});
       background-position: center;
       background-size: cover;
       -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 20% 100%);
@@ -70,11 +74,34 @@
       margin: 0px;
       padding: 0px;
     }
+    @media (max-width: 992px) {
+      #header {
+        text-align: center;
+      }
+      #headerDivider {
+        margin: 0 auto;
+      }
+      #headerSubdivider {
+        margin: 0 auto;
+      }
+      #subHeader {
+        text-align: center;
+      }
+      #contactForm {
+        margin: 48px;
+      }
+      #contactBgImage {
+        height: 500px;
+        -webkit-clip-path: none;
+        clip-path: none;
+      }
+    }
   </style>
 {% endblock %}
 {% block content %}
+<div class="container-fluid">
   <div class="row">
-    <div class="col-6" id="portfolioContainer">
+    <div class="col-lg-6 col-md-12" id="portfolioContainer">
       <div id="headerContainer">
         <h1 id="header" class="neutraBold">Contact</h1>
         <div id="headerDividerContainer">
@@ -97,7 +124,8 @@
         <button class="btn neutraBold" id="submit" type="submit">Submit</button>
       </form>
     </div>
-    <div class="col-6" id="contactBgImage">
+    <div class="col-lg-6 col-md-12" id="contactBgImage">
     </div>
   </div>
+</div>
 {% endblock %}
