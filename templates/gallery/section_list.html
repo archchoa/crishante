@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+{% block styles %}
+  {{ block.super }}
+  <style type="text/css">
+    #header {
+      color: rgba(0, 0, 0, 0.8);
+      font-size: 1.85rem;
+      text-transform: uppercase;
+    }
+    #headerContainer {
+      margin: 60px 60px 0px 60px;
+    }
+    #headerDividerContainer {
+      margin-top: 18px;
+    }
+    #headerDivider {
+      border-bottom: 1px solid #D5AE76;
+      width: 280px;
+    }
+    #headerSubdivider {
+      border-bottom: 3px solid #D5AE76;
+      margin-top: -2px;
+      width: 25px;
+    }
+    .workList {
+      padding: 60px;
+    }
+    .workList:nth-child(odd) {
+      background-color: #F5F5F5;
+    }
+    .portfolioHeaderContainer {
+      padding-bottom: 36px;
+    }
+    .portfolioHeader {
+      color: rgba(0, 0, 0, 0.75);
+      font-size: 1.75rem;
+    }
+    .portfolioSubheader {
+      color: rgba(0, 0, 0, 0.75);
+      font-size: 1rem;
+    }
+    .carousel {
+      width: 75%;
+    }
+    .carouselImage {
+      height: 550px;
+      object-fit: cover;
+      object-position: bottom;
+    }
+    .carouselCaption {
+      background: rgba(0, 0, 0, 0.5);
+      bottom: 0%;
+      left: 0%;
+      right: 0%;
+      padding: 24px;
+    }
+    .carouselHeader {
+      text-align: left;
+      font-size: 2rem;
+      font-weight: 900;
+    }
+    .carouselDescription {
+      margin-bottom: 0px;
+      text-align: left;
+    }
+  </style>
+{% endblock %}
+{% block content %}
+  <div id="portfolioContainer">
+    <div id="headerContainer">
+      <h1 id="header" class="neutraBold">Gallery</h1>
+      <div id="headerDividerContainer">
+        <div id="headerDivider"></div>
+        <div id="headerSubdivider"></div>
+      </div>
+    </div>
+    {% for section in object_list %}
+      <div class="workList" id="{{ section.slug }}">
+        <div class="workListItem">
+          <div class="portfolioHeaderContainer">
+            <h2 class="portfolioHeader neutraBold">{{ section.title }}</h2>
+            <p class="portfolioSubheader neutra">{{ section.description }}</p>
+          </div>
+          <div class="carousel slide" data-ride="carousel" id="carousel-{{ forloop.counter }}">
+            <div class="carousel-inner">
+              {% for photo in section.photo_set.all %}
+                <div class="carousel-item{% if forloop.first %} active{% endif %}">
+                  <img class="carouselImage d-block w-100" src="{{ photo.image.url }}" alt="Alt text">
+                  {% if photo.title %}
+                  <div class="carousel-caption d-none d-md-block carouselCaption">
+                    <h3 class="carouselHeader neutra">{{ photo.title }}</h3>
+                    <p class="carouselDescription neutra">{{ photo.description }}</p>
+                  </div>
+                  {% endif %}
+                </div>
+              {% endfor %}
+            </div>
+            <a class="carousel-control-prev" role="button" data-slide="prev" href="#carousel-{{ forloop.counter }}">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" role="button" data-slide="next" href="#carousel-{{ forloop.counter }}">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}

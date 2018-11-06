@@ -1,0 +1,135 @@
+{% load active_link_tags %}
+{% load static %}
+<html>
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    {% block styles %}
+      <style type="text/css">
+      @font-face {
+        font-family: "Neutra Book";
+        src: url({% static 'fonts/NeutraText-Book.otf' %});
+      }
+      @font-face {
+        font-family: "Neutra Bold";
+        src: url({% static 'fonts/NeutraText-Bold.otf' %});
+      }
+      .neutra {
+        font-family: "Neutra Book";
+      }
+      .neutraBold {
+        font-family: "Neutra Bold";
+      }
+      /* Start Navbar */
+      .customNavbar {
+        background: #fff;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+        font-family: "Neutra Book";
+        font-size: 14px;
+        height: 100px;
+        padding: 0px;
+      }
+      .navbar-nav {
+        height: 100%;
+      }
+      .navbar-nav li {
+        color: #503736;
+        margin-left: 25px;
+        margin-right: 25px;
+        opacity: 1;
+      }
+      .navbar-nav li.active {
+        border-bottom: 4px solid #503736;
+        opacity: 1;
+      }
+      .navbar-nav li a {
+        line-height: 80px;
+        vertical-align: middle;
+      }
+      #logo {
+        height: 70px;
+        margin-left: 75px;
+      }
+      #fbLogo {
+        display: block;
+        height: 30px;
+        margin: 0 auto;
+      }
+      /* End Navbar */
+      #content {
+        margin-top: 140px;
+      }
+      /* Sticky footer styles
+      -------------------------------------------------- */
+      html {
+        position: relative;
+        min-height: 100%;
+      }
+      body {
+        margin-bottom: 150px; /* Margin bottom by footer height */
+      }
+      .footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 150px; /* Set the fixed height of the footer here */
+        background-color: #5c5c5c;
+        text-align: center;
+        padding: 30px;
+      }
+      .footer span {
+        color: #fff;
+        font-family: "Neutra Book";
+        line-height: 50px;
+      }
+      </style>
+    {% endblock %}
+  </head>
+  <body>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light customNavbar">
+      <a class="navbar-brand" href="{% url 'home' %}">
+        <img src="{% static 'images/logo.png' %}" id="logo">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item {% active_link 'home' %}">
+            <a class="nav-link" href="{% url 'home' %}">Home</a>
+          </li>
+          <li class="nav-item {% active_link 'portfolio:portfolio-list' %}">
+            <a class="nav-link" href="{% url 'portfolio:portfolio-list' %}">Portfolio</a>
+          </li>
+          <li class="nav-item {% active_link 'gallery:gallery-list' %}">
+            <a class="nav-link" href="{% url 'gallery:gallery-list' %}">Gallery</a>
+          </li>
+          <li class="nav-item {% active_link 'about' %}">
+            <a class="nav-link" href="{% url 'about' %}">About Us</a>
+          </li>
+          <li class="nav-item {% active_link 'contact_form' %}">
+            <a class="nav-link" href="{% url 'contact_form' %}">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    {% block outer_content %}
+      <div id="content">
+        {% block content %}
+        {% endblock %}
+      </div>
+    {% endblock %}
+    <footer class="footer">
+      <div class="container">
+        <span>
+          All rights reserved 2018 | crishante.com
+        </span>
+        <img src="{% static 'images/fb.png' %}" id="fbLogo">
+      </div>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    {% block scripts %}
+    {% endblock %}
+  </body>
+</html>

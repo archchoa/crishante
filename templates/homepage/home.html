@@ -1,0 +1,190 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block styles %}
+  {{ block.super }}
+  <link rel="stylesheet" href="{% static 'css/slick/slick.css' %}">
+  <style type="text/css">
+    .navbar {
+      background: transparent;
+      border: 0px;
+    }
+    .navbar-nav li {
+      opacity: 0.5;
+    }
+    .navbar-nav li.active {
+      border-bottom: 0px;
+      opacity: 1;
+    }
+    .navbar-nav li a {
+      color: #fff !important;
+    }
+
+    .jumbotron {
+      background: #000;
+      border-radius: 0px;
+      display: flex;
+      flex-direction: column;
+      height: 120%;
+      justify-content: center;
+      margin-bottom: 0px;
+      min-height: 100%;
+      padding: 0px;
+      text-align: center;
+    }
+    #homepageCarousel {
+      opacity: 0.25;
+    }
+    .carousel-inner {
+      z-index: -999;
+    }
+    .carousel-item img {
+      object-fit: cover;
+    }
+
+    #headerContainer {
+      position: absolute;
+      width: 100%;
+    }
+    #headerText {
+      color: #fff;
+      font-size: 4rem;
+    }
+    #headerBtn {
+      background: transparent;
+      border: 2px solid #e0c58e;
+      border-radius: 0px;
+      font-size: 1rem;
+    }
+
+    .serviceText {
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      justify-content: center;
+      min-height: 500px;
+      padding: 100px;
+      vertical-align: middle;
+    }
+    .serviceHeader {
+      color: rgba(0, 0, 0, 0.8);
+      font-size: 1.85rem;
+      text-transform: uppercase;
+    }
+    .serviceHeaderDividerContainer {
+      margin-top: 18px;
+    }
+    .serviceHeaderDivider {
+      border-bottom: 1px solid #D5AE76;
+      width: 280px;
+    }
+    .serviceHeaderSubdivider {
+      border-bottom: 3px solid #D5AE76;
+      margin-top: -2px;
+      width: 25px;
+    }
+    .serviceDescription {
+      color: rgba(0, 0, 0, 0.75);
+      font-size: 1rem;
+      margin: 24px 0 24px 0;
+    }
+    .serviceLink {
+      color: #9EB0D0;
+      text-decoration: underline;
+    }
+    .serviceLink:hover {
+      color: #9EB0D0;
+    }
+    .serviceImage.first.odd {
+      display: none;
+    }
+
+    #testimonials {
+      background: #9EB0D0;
+    }
+    #testimonials .customer, #testimonials .text {
+      color: #fff;
+      text-align: center;
+    }
+  </style>
+{% endblock %}
+
+{% block outer_content %}
+  <div class="jumbotron">
+    <div id="homepageCarousel" class="carousel slide" data-ride="carousel">
+      <ol class="carousel-indicators">
+        {% for slide in slides %}
+          <li data-target="#homepageCarousel" data-slide-to="{{ forloop.counter0 }}" class="{% if forloop.first %}active{% endif %}"></li>
+        {% endfor %}
+      </ol>
+      <div class="carousel-inner">
+        {% for slide in slides %}
+          <div class="carousel-item {% if forloop.first %}active{% endif %}">
+            <img class="d-block w-100" src="{{ slide.image.url }}">
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+    <div id="headerContainer">
+      <h1 id="headerText" class="display-4 neutraBold">
+        {{ config.HOMEPAGE_TITLE|linebreaksbr }}
+      </h1>
+      <p class="lead">
+        <a id="headerBtn" class="btn btn-primary btn-lg neutraBold" href="{% url 'contact_form' %}" role="button">
+          {{ config.HOMEPAGE_BUTTON }}
+        </a>
+      </p>
+    </div>
+  </div>
+  <div id="portfolio">
+    {% for service in portfolio %}
+      <div class="service row">
+        <div class="serviceImage col-6 first {% cycle 'odd' 'even' %}" style="background: url({{ service.main_image.url }}); background-size: cover; background-position: center;">
+        </div>
+        <div class="serviceText col-6">
+          <div class="serviceHeaderContainer">
+            <h2 class="serviceHeader neutraBold">{{ service.title }}</h2>
+            <div class="serviceHeaderDividerContainer">
+              <div class="serviceHeaderDivider"></div>
+              <div class="serviceHeaderSubdivider"></div>
+            </div>
+          </div>
+          <span class="serviceDescription neutra">
+            {{ service.description }}
+          </span>
+          <a class="serviceLink neutra" href="{% url 'portfolio:portfolio-list' %}#{{ service.slug }}">
+            View more
+          </a>
+        </div>
+        <div class="serviceImage col-6 second {% cycle 'odd' 'even' %}" style="background: url({{ service.main_image.url }}); background-size: cover; background-position: center;">
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+  <div id="testimonials">
+    <span>Testimonials</span>
+    <div id="testimonialSlider">
+      {% for testimonial in testimonials %}
+        <div>
+          <p class="text neutra">"{{ testimonial.text }}"</p>
+          <p class="customer neutraBold">- {{ testimonial.customer }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}
+
+{% block scripts %}
+  <script src="{% static 'js/slick/slick.min.js' %}"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $("#testimonialSlider").slick({
+        dots: true,
+        slidesToShow: 3,
+        slidesToScroll: 3
+      });
+    });
+  </script>
+{% endblock %}

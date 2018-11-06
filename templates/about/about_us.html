@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+{% block styles %}
+  {{ block.super }}
+  <style type="text/css">
+    #header {
+      color: rgba(0, 0, 0, 0.8);
+      font-size: 1.85rem;
+      text-transform: uppercase;
+    }
+    #headerContainer {
+      margin: 48px 36px 0px 48px;
+    }
+    #headerDividerContainer {
+      margin-top: 18px;
+    }
+    #headerDivider {
+      border-bottom: 1px solid #D5AE76;
+      width: 280px;
+    }
+    #headerSubdivider {
+      border-bottom: 3px solid #D5AE76;
+      margin-top: -2px;
+      width: 25px;
+    }
+    #aboutContainer {
+      margin: 48px 36px 36px 48px;
+    }
+    #aboutImage {
+      height: 180px;
+      margin-bottom: 40px;
+      object-fit: cover;
+      width: 100%;
+    }
+    #aboutDescription {
+      color: rgba(0, 0, 0, 0.75);
+      font-size: 1rem;
+    }
+    .member {
+      margin-top: 36px;
+    }
+    .memberName {
+      color: rgba(0, 0, 0, 0.75);
+      display: block;
+      font-size: 1.3125rem;
+    }
+    .memberPosition {
+      color: rgba(0, 0, 0, 0.5);
+      font-size: 1rem;
+    }
+    #services {
+      background: #F5F5F5;
+      padding: 24px 0;
+    }
+    #services #header {
+      color: rgba(0, 0, 0, 0.5);
+    }
+    .serviceList {
+      color: rgba(0, 0, 0, 0.5);
+      display: inline-block;
+      font-size: 1rem;
+      margin: 24px 30px;
+    }
+    #serviceImage {
+      float: right;
+      height: 100px;
+      margin-right: 20px;
+      margin-top: 20px;
+      object-fit: cover;
+      width: 35%;
+    }
+  </style>
+{% endblock %}
+{% block content %}
+<div id="portfolioContainer">
+  <div id="headerContainer">
+    <h1 id="header" class="neutraBold">About Us</h1>
+    <div id="headerDividerContainer">
+      <div id="headerDivider"></div>
+      <div id="headerSubdivider"></div>
+    </div>
+  </div>
+  <div id="aboutContainer">
+    <div id="aboutDescription" class="neutra">
+      {{ config.ABOUT_DESCRIPTION }}
+    </div>
+    <div id="aboutMembers">
+      {% for member in members %}
+        <div class="member">
+          <span class="memberName neutraBold">
+            {{ member.name }}
+          </span>
+          <span class="memberPosition neutra">
+            {{ member.position }}
+          </span>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+  <div id="services">
+    <div id="headerContainer">
+      <h1 id="header" class="neutraBold">Our Services</h1>
+      <div id="headerDividerContainer">
+        <div id="headerDivider"></div>
+        <div id="headerSubdivider"></div>
+      </div>
+    </div>
+    {% for services in split_services %}
+      <ul class="serviceList">
+        {% for service in services %}
+          <li class="neutra">{{ service.name }}</li>
+        {% endfor %}
+      </ul>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

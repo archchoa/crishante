@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+{% load widget_tweaks %}
+
+{% block styles %}
+  {{ block.super }}
+  <style type="text/css">
+    #header {
+      color: rgba(0, 0, 0, 0.8);
+      font-size: 1.85rem;
+      text-transform: uppercase;
+    }
+    #headerContainer {
+      margin: 48px 36px 0px 48px;
+    }
+    #headerDividerContainer {
+      margin-top: 18px;
+    }
+    #headerDivider {
+      border-bottom: 1px solid #D5AE76;
+      width: 280px;
+    }
+    #headerSubdivider {
+      border-bottom: 3px solid #D5AE76;
+      margin-top: -2px;
+      width: 25px;
+    }
+    #subHeader {
+      color: rgba(0, 0, 0, 0.75);
+      font-size: 1rem;
+      margin-top: 24px;
+    }
+    #portfolioContainer {
+      padding: 0px;
+    }
+    #contactForm {
+      margin-left: 48px;
+      margin-top: 48px;
+    }
+    .customFormControl {
+      border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+      border-left: 0px;
+      border-right: 0px;
+      border-top: 0px;
+      border-radius: 0px;
+      font-size: 1rem;
+      height: 35px;
+    }
+    .customFormControl::placeholder {
+      color: rgba(0, 0, 0, 0.35);
+    }
+    textarea.customFormControl {
+      border: 2px solid rgba(0, 0, 0, 0.25);
+      height: inherit;
+    }
+    #submit {
+      background: #E0C58E;
+      border-radius: 50px;
+      color: #fff;
+      font-size: 1rem;
+      width: 100%;
+    }
+    #contactBgImage {
+      background: url({% static 'images/contact.jpg' %});
+      background-position: center;
+      background-size: cover;
+      -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 20% 100%);
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 20% 100%);
+      margin: 0px;
+      padding: 0px;
+    }
+  </style>
+{% endblock %}
+{% block content %}
+  <div class="row">
+    <div class="col-6" id="portfolioContainer">
+      <div id="headerContainer">
+        <h1 id="header" class="neutraBold">Contact</h1>
+        <div id="headerDividerContainer">
+          <div id="headerDivider"></div>
+          <div id="headerSubdivider"></div>
+        </div>
+        <div id="subHeader" class="neutra">
+          Get updates and quotation here
+        </div>
+      </div>
+      <form id="contactForm" method="POST" action=".">
+        {% csrf_token %}
+        <div class="row">
+          {% for field in form %}
+            <div class="col-12 form-group">
+              {% render_field field class+="neutra form-control customFormControl" placeholder=field.label %}
+            </div>
+          {% endfor %}
+        </div>
+        <button class="btn neutraBold" id="submit" type="submit">Submit</button>
+      </form>
+    </div>
+    <div class="col-6" id="contactBgImage">
+    </div>
+  </div>
+{% endblock %}
