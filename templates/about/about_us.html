@@ -49,13 +49,13 @@
     }
     #services {
       background: #F5F5F5;
-      padding: 24px 0;
     }
-    #services #header {
-      color: rgba(0, 0, 0, 0.5);
+    #services #headerContainer {
+      margin: 0px;
+      padding: 24px 36px 0px 48px;
     }
     .serviceList {
-      color: rgba(0, 0, 0, 0.5);
+      color: rgba(0, 0, 0, 0.75);
       display: inline-block;
       font-size: 1rem;
       margin: 24px 30px;
@@ -67,6 +67,35 @@
       margin-top: 20px;
       object-fit: cover;
       width: 35%;
+    }
+    .serviceListMobile {
+      display: none;
+    }
+    @media (max-width: 992px) {
+      #header {
+        text-align: center;
+      }
+      #headerDivider {
+        margin: 0 auto;
+      }
+      #headerSubdivider {
+        margin: 0 auto;
+      }
+      #aboutDescription {
+        text-align: justify;
+      }
+      #aboutMembers {
+        text-align: center;
+      }
+      .serviceList {
+        display: none;
+      }
+      .serviceListMobile {
+        color: rgba(0, 0, 0, 0.75);
+        display: block;
+        font-size: 1rem;
+        padding: 24px 60px;
+      }
     }
   </style>
 {% endblock %}
@@ -111,6 +140,13 @@
         {% endfor %}
       </ul>
     {% endfor %}
+    <ul class="serviceListMobile">
+      {% for services in split_services %}
+        {% for service in services %}
+          <li class="neutra">{{ service.name }}</li>
+        {% endfor %}
+      {% endfor %}
+    </ul>
   </div>
 </div>
 {% endblock %}
