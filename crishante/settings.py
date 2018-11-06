@@ -177,6 +177,7 @@ CONSTANCE_ADDITIONAL_FIELDS = {
 CONSTANCE_CONFIG = {
     'HOMEPAGE_TITLE': ('', 'The homepage title'),
     'HOMEPAGE_BUTTON': ('', 'The text in the homepage button'),
+    'RESERVE_BUTTON': ('', 'The reserve text in the homepage'),
     'ABOUT_DESCRIPTION': ('', 'The description in About Us page'),
     'CONTACT_IMAGE': ('', 'Contact us image', 'image_field'),
 }
