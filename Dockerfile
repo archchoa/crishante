@@ -28,9 +28,8 @@ RUN mkdir -p /var/apps/crishante/media/images
 
 RUN groupadd varwwwusers
 RUN adduser www-data varwwwusers
-RUN adduser django varwwwusers
-RUN chgrp -R varwwwusers /var/apps/crishante/media
-RUN chmod -R 770 /var/apps/crishante/media
+RUN chgrp -R varwwwusers /var/www/media
+RUN chmod -R 760 /var/www/media
 
 WORKDIR /var/apps/crishante
 
