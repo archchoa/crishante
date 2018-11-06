@@ -170,8 +170,13 @@ ACTIVE_LINK_STRICT = True
 
 CONSTANCE_BACKEND = 'constance.backends.database.DatabaseBackend'
 
+CONSTANCE_ADDITIONAL_FIELDS = {
+    'image_field': ['django.forms.ImageField', {}]
+}
+
 CONSTANCE_CONFIG = {
     'HOMEPAGE_TITLE': ('', 'The homepage title'),
     'HOMEPAGE_BUTTON': ('', 'The text in the homepage button'),
     'ABOUT_DESCRIPTION': ('', 'The description in About Us page'),
+    'CONTACT_IMAGE': ('', 'Contact us image', 'image_field'),
 }
