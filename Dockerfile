@@ -21,7 +21,7 @@ ADD requirements.txt /tmp/requirements.txt
 RUN cd /tmp && pip install -r requirements.txt
 
 RUN mkdir -p /var/apps/crishante
-ADD /static /var/apps/crishante/static
+ADD /static /var/apps/crishante/staticfiles
 
 WORKDIR /var/apps/crishante
 
