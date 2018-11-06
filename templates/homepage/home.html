@@ -20,6 +20,12 @@
     .navbar-nav li a {
       color: #fff !important;
     }
+    .navbar.white {
+      background: white;
+    }
+    .navbar.white .navbar-nav li a {
+      color: #503736 !important;
+    }
 
     .jumbotron {
       background: #000;
@@ -171,6 +177,12 @@
     }
 
     @media (max-width: 992px) {
+      .navbar-nav li {
+        opacity: 1;
+      }
+      .navbar-nav li a {
+        color: #503736 !important;
+      }
       #headerText {
         font-size: 2rem;
       }
@@ -193,77 +205,79 @@
 {% endblock %}
 
 {% block outer_content %}
-  <div class="jumbotron">
-    <!-- <div id="homepageCarousel" class="carousel slide" data-ride="carousel">
-      <ol class="carousel-indicators">
-        {% for slide in slides %}
-          <li data-target="#homepageCarousel" data-slide-to="{{ forloop.counter0 }}" class="{% if forloop.first %}active{% endif %}"></li>
-        {% endfor %}
-      </ol>
-      <div class="carousel-inner">
-        {% for slide in slides %}
-          <div class="carousel-item {% if forloop.first %}active{% endif %}">
-            <img class="d-block w-100" src="{{ slide.image.url }}">
-          </div>
-        {% endfor %}
-      </div>
-    </div> -->
-    <div id="headerContainer">
-      <h1 id="headerText" class="display-4 neutraBold">
-        {{ config.HOMEPAGE_TITLE|linebreaksbr }}
-      </h1>
-      <p class="lead">
-        <a id="headerBtn" class="btn btn-primary btn-lg neutraBold" href="{% url 'contact_form' %}" role="button">
-          {{ config.HOMEPAGE_BUTTON }}
-        </a>
-      </p>
-    </div>
-  </div>
-  <div id="portfolio" class="container-fluid">
-    {% for service in portfolio %}
-      <div class="service row">
-        <div class="serviceImage col-lg-6 col-md-12 first {% cycle 'odd' 'even' %}" style="background: url({{ service.main_image.url }}); background-size: cover; background-position: center;">
-        </div>
-        <div class="serviceText col-lg-6 col-md-12">
-          <div class="serviceHeaderContainer">
-            <h2 class="serviceHeader neutraBold">{{ service.title }}</h2>
-            <div class="serviceHeaderDividerContainer">
-              <div class="serviceHeaderDivider"></div>
-              <div class="serviceHeaderSubdivider"></div>
+  <div id="outerContent">
+    <div class="jumbotron">
+      <!-- <div id="homepageCarousel" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+          {% for slide in slides %}
+            <li data-target="#homepageCarousel" data-slide-to="{{ forloop.counter0 }}" class="{% if forloop.first %}active{% endif %}"></li>
+          {% endfor %}
+        </ol>
+        <div class="carousel-inner">
+          {% for slide in slides %}
+            <div class="carousel-item {% if forloop.first %}active{% endif %}">
+              <img class="d-block w-100" src="{{ slide.image.url }}">
             </div>
-          </div>
-          <span class="serviceDescription neutra">
-            {{ service.description }}
-          </span>
-          <a class="serviceLink neutra" href="{% url 'portfolio:portfolio-list' %}#{{ service.slug }}">
-            View more
+          {% endfor %}
+        </div>
+      </div> -->
+      <div id="headerContainer">
+        <h1 id="headerText" class="display-4 neutraBold">
+          {{ config.HOMEPAGE_TITLE|linebreaksbr }}
+        </h1>
+        <p class="lead">
+          <a id="headerBtn" class="btn btn-primary btn-lg neutraBold" href="{% url 'contact_form' %}" role="button">
+            {{ config.HOMEPAGE_BUTTON }}
           </a>
-        </div>
-        <div class="serviceImage col-lg-6 col-md-12 second {% cycle 'odd' 'even' %}" style="background: url({{ service.main_image.url }}); background-size: cover; background-position: center;">
-        </div>
-      </div>
-    {% endfor %}
-  </div>
-  <div id="testimonials">
-    <div class="serviceHeaderContainer">
-      <h2 class="serviceHeader neutraBold">Testimonials</h2>
-      <div class="serviceHeaderDividerContainer">
-        <div class="serviceHeaderDivider"></div>
-        <div class="serviceHeaderSubdivider"></div>
+        </p>
       </div>
     </div>
-    <div id="testimonialSlider">
-      {% for testimonial in testimonials %}
-        <div class="testimonial">
-          <p class="text neutra">"{{ testimonial.text }}"</p>
-          <p class="customer neutraBold">- {{ testimonial.customer }}</p>
+    <div id="portfolio" class="container-fluid">
+      {% for service in portfolio %}
+        <div class="service row">
+          <div class="serviceImage col-lg-6 col-md-12 first {% cycle 'odd' 'even' %}" style="background: url({{ service.main_image.url }}); background-size: cover; background-position: center;">
+          </div>
+          <div class="serviceText col-lg-6 col-md-12">
+            <div class="serviceHeaderContainer">
+              <h2 class="serviceHeader neutraBold">{{ service.title }}</h2>
+              <div class="serviceHeaderDividerContainer">
+                <div class="serviceHeaderDivider"></div>
+                <div class="serviceHeaderSubdivider"></div>
+              </div>
+            </div>
+            <span class="serviceDescription neutra">
+              {{ service.description }}
+            </span>
+            <a class="serviceLink neutra" href="{% url 'portfolio:portfolio-list' %}#{{ service.slug }}">
+              View more
+            </a>
+          </div>
+          <div class="serviceImage col-lg-6 col-md-12 second {% cycle 'odd' 'even' %}" style="background: url({{ service.main_image.url }}); background-size: cover; background-position: center;">
+          </div>
         </div>
       {% endfor %}
     </div>
-    <div id="reserveBtnContainer">
-      <a class="btn neutraBold" id="reserveBtn" href="{% url 'contact_form' %}">
-        {{ config.RESERVE_BUTTON }}
-      </a>
+    <div id="testimonials">
+      <div class="serviceHeaderContainer">
+        <h2 class="serviceHeader neutraBold">Testimonials</h2>
+        <div class="serviceHeaderDividerContainer">
+          <div class="serviceHeaderDivider"></div>
+          <div class="serviceHeaderSubdivider"></div>
+        </div>
+      </div>
+      <div id="testimonialSlider">
+        {% for testimonial in testimonials %}
+          <div class="testimonial">
+            <p class="text neutra">"{{ testimonial.text }}"</p>
+            <p class="customer neutraBold">- {{ testimonial.customer }}</p>
+          </div>
+        {% endfor %}
+      </div>
+      <div id="reserveBtnContainer">
+        <a class="btn neutraBold" id="reserveBtn" href="{% url 'contact_form' %}">
+          {{ config.RESERVE_BUTTON }}
+        </a>
+      </div>
     </div>
   </div>
 {% endblock %}
@@ -286,6 +300,15 @@
             }
           },
         ]
+      });
+
+      $(window).scroll(function() {
+        var scroll = $(window).scrollTop();
+        if (scroll > 550) {
+          $(".navbar").addClass('white');
+        } else {
+          $(".navbar").removeClass('white');
+        }
       });
     });
   </script>
