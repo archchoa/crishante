@@ -54,11 +54,15 @@
     .workHeader {
       color: rgba(0, 0, 0, 0.5);
       font-size: 1.5625rem;
+      margin-left: 60px;
+      margin-right: 60px;
     }
     .workSubheader {
       color: rgba(0, 0, 0, 0.75);
       font-size: 1rem;
       margin-bottom: 48px;
+      margin-left: 60px;
+      margin-right: 60px;
     }
     .workListItem {
       margin-bottom: 36px;
@@ -66,13 +70,26 @@
       margin-right: 60px;
       margin-top: 96px;
     }
-    .carousel {
-      width: 75%;
-    }
     .carouselImage {
       height: 550px;
       object-fit: cover;
       object-position: bottom;
+    }
+    .carouselSubImages {
+      height: 550px;
+      overflow-y: scroll;
+    }
+    .carouselSubImage {
+      display: block;
+      height: 200px;
+      width: 100%;
+      object-fit: cover;
+    }
+    .carouselLink .carouselSubImage {
+      margin-bottom: 24px;
+    }
+    .carouselLink:last-child .carouselSubImage {
+      margin-bottom: 0px;
     }
     .carouselCaption {
       background: rgba(0, 0, 0, 0.5);
@@ -88,6 +105,9 @@
     .carouselDescription {
       margin-bottom: 0px;
       text-align: left;
+    }
+    .carouselLink:hover {
+      cursor: pointer;
     }
     @media (max-width: 992px) {
       #header {
@@ -116,8 +136,19 @@
         margin-left: 0px;
         margin-right: 0px;
       }
-      .carousel {
-        width: 100%;
+      .carouselSubImages {
+        height: inherit;
+        overflow-y: auto;
+      }
+      .carouselSubImage {
+        display: inline-block;
+        height: 150px;
+        width: 150px;
+        object-fit: cover;
+      }
+      .carouselLink .carouselSubImage {
+        margin-top: 12px;
+        margin-bottom: 0px;
       }
     }
   </style>
@@ -148,26 +179,43 @@
                 <h4 class="workHeader neutraBold">{{ work.header }}</h4>
                 <p class="workSubheader neutra">{{ work.subheader }}</p>
               {% endif %}
-              <div id="carousel-{{ forloop.counter }}" class="carousel slide" data-ride="carousel">
-                <div class="carousel-inner">
-                  {% for photo in work.photo_set.all %}
-                    <div class="carousel-item{% if forloop.first %} active{% endif %}">
-                      <img class="carouselImage d-block w-100" src="{{ photo.image.url }}" alt="Alt text">
-                      <div class="carousel-caption d-none d-md-block carouselCaption">
-                        <h3 class="carouselHeader neutraBold">{{ work.title }}</h3>
-                        <p class="carouselDescription neutra">{{ work.description }}</p>
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-lg-8 col-md-12">
+                    <div id="carousel-{{ forloop.counter }}" class="carousel slide" data-ride="carousel">
+                      <div class="carousel-inner">
+                        {% for photo in work.photo_set.all %}
+                          <div class="carousel-item{% if forloop.first %} active{% endif %}">
+                            <img class="carouselImage d-block w-100" src="{{ photo.image.url }}" alt="Alt text">
+                            <div class="carousel-caption d-none d-md-block carouselCaption">
+                              <h3 class="carouselHeader neutraBold">{{ work.title }}</h3>
+                              <p class="carouselDescription neutra">{{ work.description }}</p>
+                            </div>
+                          </div>
+                        {% endfor %}
                       </div>
+                      <a class="carousel-control-prev" role="button" data-slide="prev" href="#carousel-{{ forloop.counter }}">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                      </a>
+                      <a class="carousel-control-next" role="button" data-slide="next" href="#carousel-{{ forloop.counter }}">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                      </a>
                     </div>
-                  {% endfor %}
+                  </div>
+                  <div class="col-lg-4 col-md-12">
+                    <div class="carouselSubImages">
+                      {% with carouselIndex=forloop.counter %}
+                        {% for photo in work.photo_set.all %}
+                          <a data-carousel="carousel-{{ carouselIndex }}" data-slide-to="{{ forloop.counter }}" class="carouselLink">
+                            <img class="carouselSubImage" src="{{ photo.image.url }}">
+                          </a>
+                        {% endfor %}
+                      {% endwith %}
+                    </div>
+                  </div>
                 </div>
-                <a class="carousel-control-prev" role="button" data-slide="prev" href="#carousel-{{ forloop.counter }}">
-                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" role="button" data-slide="next" href="#carousel-{{ forloop.counter }}">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="sr-only">Next</span>
-                </a>
               </div>
             </div>
           {% endfor %}
@@ -175,4 +223,19 @@
       </div>
     {% endfor %}
   </div>
+{% endblock %}
+
+{% block scripts %}
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $(".carouselLink").click(function(e) {
+        e.preventDefault();
+
+        var carousel = $(this).data('carousel');
+        var slide = $(this).data('slide-to') - 1;
+
+        $("#" + carousel).carousel(slide);
+      });
+    });
+  </script>
 {% endblock %}
