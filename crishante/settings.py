@@ -175,6 +175,11 @@ CONSTANCE_ADDITIONAL_FIELDS = {
 }
 
 CONSTANCE_CONFIG = {
+    'HTML_HOMEPAGE_TITLE': ('', 'The homepage HTML title'),
+    'HTML_ABOUT_TITLE': ('', 'The about us HTML title'),
+    'HTML_PORTFOLIO_TITLE': ('', 'The portfolio HTML title'),
+    'HTML_GALLERY_TITLE': ('', 'The gallery HTML title'),
+    'HTML_CONTACT_TITLE': ('', 'The contact us HTML title'),
     'HOMEPAGE_TITLE': ('', 'The homepage title'),
     'HOMEPAGE_BUTTON': ('', 'The text in the homepage button'),
     'RESERVE_BUTTON': ('', 'The reserve text in the homepage'),
