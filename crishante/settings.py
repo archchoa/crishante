@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
+import environ
 import json
 import os
 
@@ -20,13 +21,20 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
-SECRET_KEY = os.getenv(
-    'SECRET_KEY', '3)=!vw#w4*_wir%#k*7cjfb^mffxfl3equ-h54h%(sci#px05%')
+env = environ.Env(
+    DEBUG=(bool, False),
+    ALLOWED_HOSTS=(list, ['127.0.0.1', 'localhost']),
+    SITE_ID=(int, 1),
+)
+
+environ.Env.read_env('.env')
+
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = json.loads(os.getenv('DEBUG', 'false'))
+DEBUG = env('DEBUG')
 
-ALLOWED_HOSTS = json.loads(os.getenv('ALLOWED_HOSTS', '["127.0.0.1"]'))
+ALLOWED_HOSTS = env('ALLOWED_HOSTS')
 
 
 # Application definition
