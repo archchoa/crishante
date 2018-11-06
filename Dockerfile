@@ -23,6 +23,11 @@ RUN cd /tmp && pip install -r requirements.txt
 RUN mkdir -p /var/apps/crishante
 ADD /static /var/apps/crishante/staticfiles
 
+RUN groupadd varwwwusers
+RUN useradd www-data -G varwwwusers
+RUN chgrp -R varwwwusers /var/apps/crishante/media
+RUN chmod -R 760 /var/apps/crishante/media
+
 WORKDIR /var/apps/crishante
 
 ADD . /var/apps/crishante
