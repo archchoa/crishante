@@ -1,5 +1,6 @@
 FROM python:3.5
-ENV PYTHONUNBUFFERED 1
+
+ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update \
  && apt-get upgrade -y \
@@ -23,6 +24,7 @@ RUN mkdir -p /var/apps/crishante
 ADD /static /var/apps/crishante/static
 
 WORKDIR /var/apps/crishante
+
 ADD . /var/apps/crishante
 
 CMD ["sh", "./deploy/deploy.sh"]
