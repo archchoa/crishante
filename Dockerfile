@@ -23,8 +23,6 @@ RUN cd /tmp && pip install -r requirements.txt
 RUN mkdir -p /var/apps/crishante
 ADD /static /var/apps/crishante/staticfiles
 
-RUN mkdir -p /var/www/media && chown -R crishante /var/www/media/ && chmod -R u+rX /var/www/media/
-
 WORKDIR /var/apps/crishante
 
 ADD . /var/apps/crishante
