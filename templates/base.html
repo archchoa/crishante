@@ -101,6 +101,12 @@
           height: 50px;
           margin-left: 12px;
         }
+        .navbar-nav {
+          display: flex;
+          flex-direction: column;
+          height: inherit;
+          justify-content: center;
+        }
         .navbar-nav li {
           background: #fff;
           margin-left: 0px;
@@ -110,6 +116,9 @@
         .navbar-nav li.active {
           border-bottom: 0px;
           text-decoration: underline;
+        }
+        .navbar-nav li a {
+          line-height: 15px;
         }
         .navbar-toggler {
           margin-right: 12px;
@@ -179,12 +188,14 @@
           $("#outerContent").hide();
           $("#logo").css('visibility', 'hidden');
           $("#mobileLogoContainer").show();
+          $(".footer").hide();
         });
         $(".navbar").on('hide.bs.collapse', function() {
           $("#content").show();
           $("#outerContent").show();
           $("#logo").css('visibility', 'visible');
           $("#mobileLogoContainer").hide();
+          $(".footer").show();
         });
       });
     </script>
