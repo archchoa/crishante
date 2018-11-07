@@ -25,11 +25,6 @@ ADD /static /var/apps/crishante/staticfiles
 
 RUN mkdir -p /var/www/media && chown -R crishante /var/www/media/ && chmod -R u+rX /var/www/media/
 
-RUN groupadd varwwwusers
-RUN adduser www-data varwwwusers
-RUN chgrp -R varwwwusers /var/www/media/
-RUN chmod -R 760 /var/www/media/
-
 WORKDIR /var/apps/crishante
 
 ADD . /var/apps/crishante
