@@ -54,15 +54,11 @@
     .workHeader {
       color: rgba(0, 0, 0, 0.5);
       font-size: 1.5625rem;
-      margin-left: 60px;
-      margin-right: 60px;
     }
     .workSubheader {
       color: rgba(0, 0, 0, 0.75);
       font-size: 1rem;
       margin-bottom: 48px;
-      margin-left: 60px;
-      margin-right: 60px;
     }
     .workListItem {
       margin-bottom: 36px;
@@ -109,6 +105,9 @@
     .carouselLink:hover {
       cursor: pointer;
     }
+    .removePadding {
+      padding: 0px;
+    }
     @media (max-width: 992px) {
       #header {
         text-align: center;
@@ -127,9 +126,13 @@
         text-align: center;
       }
       .workHeader {
+        margin-left: 60px;
+        margin-right: 60px;
         text-align: center;
       }
       .workSubheader {
+        margin-left: 60px;
+        margin-right: 60px;
         text-align: center;
       }
       .workListItem {
@@ -137,8 +140,10 @@
         margin-right: 0px;
       }
       .carouselSubImages {
-        height: inherit;
+        height: 180px;
         overflow-y: auto;
+        overflow-x: scroll;
+        white-space: nowrap
       }
       .carouselSubImage {
         display: inline-block;
@@ -181,7 +186,7 @@
               {% endif %}
               <div class="container-fluid">
                 <div class="row">
-                  <div class="col-lg-8 col-md-12">
+                  <div class="col-lg-8 col-md-12 removePadding">
                     <div id="carousel-{{ forloop.counter }}" class="carousel slide" data-ride="carousel">
                       <div class="carousel-inner">
                         {% for photo in work.photo_set.all %}
