@@ -20,7 +20,7 @@ class Section(SortableMixin):
 class Photo(SortableMixin):
     title = models.CharField(max_length=255, blank=True)
     description = models.TextField(blank=True)
-    image = models.ImageField(upload_to='images/%Y/%m/%d')
+    image = models.ImageField(upload_to='images')
     section = models.ForeignKey('gallery.Section', on_delete=models.CASCADE)
     order = models.PositiveIntegerField(
         default=0, editable=False, db_index=True)

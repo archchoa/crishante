@@ -7,7 +7,7 @@ class Portfolio(SortableMixin):
     title = models.CharField(max_length=255)
     slug = models.SlugField()
     description = models.TextField()
-    main_image = models.ImageField(upload_to='images/%Y/%m/%d')
+    main_image = models.ImageField(upload_to='images')
     order = models.PositiveIntegerField(
         default=0, editable=False, db_index=True)
 
@@ -36,7 +36,7 @@ class Work(SortableMixin):
 
 
 class Photo(SortableMixin):
-    image = models.ImageField(upload_to='images/%Y/%m/%d')
+    image = models.ImageField(upload_to='images')
     work = models.ForeignKey(
         'portfolio.Work', on_delete=models.CASCADE)
     order = models.PositiveIntegerField(

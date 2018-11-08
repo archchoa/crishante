@@ -4,7 +4,7 @@ from adminsortable.models import SortableMixin
 
 
 class Slide(SortableMixin):
-    image = models.ImageField(upload_to='images/%Y/%m/%d')
+    image = models.ImageField(upload_to='images')
     order = models.PositiveIntegerField(
         default=0, editable=False, db_index=True)
 
