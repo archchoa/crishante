@@ -187,6 +187,7 @@ CONSTANCE_CONFIG = {
     'RESERVE_BUTTON': ('', 'The reserve text in the homepage'),
     'ABOUT_DESCRIPTION': ('', 'The description in About Us page'),
     'CONTACT_IMAGE': ('', 'Contact us image', 'image_field'),
+    'CONTACT_BYLINE': ('', 'Contact byline'),
 }
 
 
