@@ -202,6 +202,8 @@
       .carousel-item img {
         height: 100%;
       }
+    }
+    @media (max-width: 768px) {
       .serviceHeaderDivider {
         width: 90%;
       }
@@ -214,7 +216,10 @@
         min-height: 400px;
       }
       .serviceImage.odd {
-        display: none;
+        display: none !important;
+      }
+      .serviceImage.even {
+        display: block !important;
       }
     }
   </style>
@@ -251,9 +256,9 @@
     <div id="portfolio" class="container-fluid">
       {% for service in portfolio %}
         <div class="service row">
-          <div class="serviceImage col-lg-6 col-md-12 first {% cycle 'odd' 'even' %}" style="background: url({{ service.main_image.url }}); background-size: cover; background-position: center;">
+          <div class="serviceImage col-lg-6 col-md-6 col-sm-12 first {% cycle 'odd' 'even' %}" style="background: url({{ service.main_image.url }}); background-size: cover; background-position: center;">
           </div>
-          <div class="serviceText col-lg-6 col-md-12">
+          <div class="serviceText col-lg-6 col-md-6 col-sm-12">
             <div class="serviceHeaderContainer">
               <h2 class="serviceHeader neutraBold">{{ service.title }}</h2>
               <div class="serviceHeaderDividerContainer">
@@ -268,7 +273,7 @@
               View more
             </a>
           </div>
-          <div class="serviceImage col-lg-6 col-md-12 second {% cycle 'odd' 'even' %}" style="background: url({{ service.main_image.url }}); background-size: cover; background-position: center;">
+          <div class="serviceImage col-lg-6 col-md-6 col-sm-12 second {% cycle 'odd' 'even' %}" style="background: url({{ service.main_image.url }}); background-size: cover; background-position: center;">
           </div>
         </div>
       {% endfor %}
