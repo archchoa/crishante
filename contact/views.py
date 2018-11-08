@@ -8,7 +8,7 @@ class CustomContactFormView(ContactFormView):
     success_url = reverse_lazy('contact_form')
 
     def form_valid(self, form):
-        form = super(ContactFormView, self).form_valid(form)
+        form = super(CustomContactFormView, self).form_valid(form)
         messages.add_message(
             self.request, messages.SUCCESS, 'Message sent successfully.')
         return form
