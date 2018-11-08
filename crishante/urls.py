@@ -20,12 +20,14 @@ from django.urls import include
 from django.urls import path
 
 from about.views import AboutUsView
+from contact.views import CustomContactFormView
 from homepage.views import HomepageView
 
 urlpatterns = [
     path('', HomepageView.as_view(), name='home'),
     path('about/', AboutUsView.as_view(), name='about'),
     path('admin/', admin.site.urls),
+    path('contact/', CustomContactFormView.as_view(), name='contact_form'),
     path('contact/', include('contact_form.urls')),
     path('gallery/', include('gallery.urls', namespace='gallery')),
     path('portfolio/', include('portfolio.urls', namespace='portfolio')),

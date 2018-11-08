@@ -24,6 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 env = environ.Env(
     DEBUG=(bool, False),
     ALLOWED_HOSTS=(list, ['127.0.0.1', 'localhost']),
+    MANAGERS=(list, []),
     SITE_ID=(int, 1),
 )
 
@@ -55,6 +56,7 @@ INSTALLED_APPS = [
     'widget_tweaks',
 
     'about',
+    'contact',
     'gallery',
     'homepage',
     'portfolio',
@@ -186,3 +188,16 @@ CONSTANCE_CONFIG = {
     'ABOUT_DESCRIPTION': ('', 'The description in About Us page'),
     'CONTACT_IMAGE': ('', 'Contact us image', 'image_field'),
 }
+
+
+# Email settings
+
+EMAIL_HOST = env('EMAIL_HOST')
+EMAIL_PORT = 587
+EMAIL_HOST_USER = env('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
+EMAIL_USE_TLS = True
+
+DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL')
+
+MANAGERS = [(email, email) for email in env('MANAGERS')]

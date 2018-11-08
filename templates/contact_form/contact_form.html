@@ -35,6 +35,9 @@
       font-size: 1rem;
       margin-top: 24px;
     }
+    .messages {
+      margin-top: 24px;
+    }
     #portfolioContainer {
       padding: 0px;
     }
@@ -115,7 +118,17 @@
         <div id="subHeader" class="neutra">
           Get updates and quotation here
         </div>
+        <div class="messages">
+          {% if messages %}
+            {% for message in messages %}
+            <div class="neutra alert{% if message.tags %} alert-{{ message.tags }}{% endif %}" role="alert">
+              {{ message }}
+            </div>
+            {% endfor %}
+          {% endif %}
+        </div>
       </div>
+      {% block form %}
       <form id="contactForm" method="POST" action=".">
         {% csrf_token %}
         <div class="row">
@@ -127,6 +140,7 @@
         </div>
         <button class="btn neutraBold" id="submit" type="submit">Submit</button>
       </form>
+      {% endblock %}
     </div>
     <div class="col-lg-6 col-md-12" id="contactBgImage">
     </div>
