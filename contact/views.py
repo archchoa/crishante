@@ -3,8 +3,11 @@ from django.urls import reverse_lazy
 
 from contact_form.views import ContactFormView
 
+from .forms import CustomContactForm
+
 
 class CustomContactFormView(ContactFormView):
+    form_class = CustomContactForm
     success_url = reverse_lazy('contact_form')
 
     def form_valid(self, form):
