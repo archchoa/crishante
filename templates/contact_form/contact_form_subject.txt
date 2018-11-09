@@ -1,1 +1,1 @@
-New message from: {{ name }} ({{ email }})
+New message from: {{ name }} ({{ email }} / {{ number }})

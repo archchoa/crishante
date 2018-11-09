@@ -51,7 +51,7 @@
       margin-top: 48px;
     }
     .customFormControl {
-      border-bottom: 2px solid rgba(0, 0, 0, 0.25);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.15);
       border-left: 0px;
       border-right: 0px;
       border-top: 0px;
@@ -63,7 +63,7 @@
       color: rgba(0, 0, 0, 0.35);
     }
     textarea.customFormControl {
-      border: 2px solid rgba(0, 0, 0, 0.25);
+      border: 1px solid rgba(0, 0, 0, 0.15);
       height: inherit;
     }
     #submit {
@@ -92,6 +92,9 @@
       }
       #headerSubdivider {
         margin: 0 auto;
+      }
+      #contactInfo {
+        text-align: center;
       }
       #subHeader {
         text-align: center;
@@ -142,7 +145,7 @@
         <div class="row">
           {% for field in form %}
             <div class="col-12 form-group">
-              {% render_field field class+="neutra form-control customFormControl" placeholder=field.label %}
+              {% render_field field class+="neutra form-control customFormControl" %}
             </div>
           {% endfor %}
         </div>
