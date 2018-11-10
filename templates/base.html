@@ -60,7 +60,12 @@
         margin-left: 45px;
       }
       #fbLogo {
-        display: block;
+        display: inline-block;
+        height: 30px;
+        margin: 0 auto;
+      }
+      #igLogo {
+        display: inline-block;
         height: 30px;
         margin: 0 auto;
       }
@@ -181,7 +186,14 @@
         <span>
           All rights reserved 2018 | crishante.com
         </span>
-        <img src="{% static 'images/fb.png' %}" id="fbLogo">
+        <div>
+          <a href="{{ config.FACEBOOK_URL }}">
+            <img src="{% static 'images/fb.png' %}" id="fbLogo">
+          </a>
+          <a href="{{ config.INSTAGRAM_URL }}">
+            <img src="{% static 'images/ig.png' %}" id="igLogo">
+          </a>
+        </div>
       </div>
     </footer>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>

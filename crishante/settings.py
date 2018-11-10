@@ -188,6 +188,8 @@ CONSTANCE_CONFIG = {
     'ABOUT_DESCRIPTION': ('', 'The description in About Us page'),
     'CONTACT_IMAGE': ('', 'Contact us image', 'image_field'),
     'CONTACT_BYLINE': ('', 'Contact byline'),
+    'FACEBOOK_URL': ('', 'Facebook URL'),
+    'INSTAGRAM_URL': ('', 'Instagram URL'),
 }
 
 
