@@ -1,0 +1,48 @@
+<div id="carouselContainer" class="container-fluid">
+  <div class="row">
+    {% if title %}
+      <div class="col-12 removePadding">
+        <div class="portfolioInnerHeaderContainer">
+          <h2 class="portfolioInnerHeader neutraBold">{{ title }}</h2>
+          <p class="portfolioInnerSubheader neutra">{{ description }}</p>
+        </div>
+      </div>
+    {% endif %}
+    <div class="col-lg-8 col-md-12 removePadding">
+      <div class="carousel slide" data-ride="carousel" id="carousel-{{ forloop.counter }}">
+        <div class="carousel-inner">
+          {% for photo in photos %}
+            <div class="carousel-item{% if forloop.first %} active{% endif %}">
+              <img class="carouselImage d-block w-100" src="{{ photo.image.url }}" alt="Alt text">
+              {% if photo.title %}
+              <div class="carousel-caption d-none d-md-block carouselCaption">
+                <h3 class="carouselHeader neutra">{{ photo.title }}</h3>
+                <p class="carouselDescription neutra">{{ photo.description }}</p>
+              </div>
+              {% endif %}
+            </div>
+          {% endfor %}
+        </div>
+        <a class="carousel-control-prev" role="button" data-slide="prev" href="#carousel-{{ forloop.counter }}">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" role="button" data-slide="next" href="#carousel-{{ forloop.counter }}">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-12">
+      <div class="carouselSubImages">
+        {% with carouselIndex=forloop.counter %}
+          {% for photo in photos %}
+            <a data-carousel="carousel-{{ carouselIndex }}" data-slide-to="{{ forloop.counter }}" class="carouselLink">
+              <img class="carouselSubImage" src="{{ photo.image.url }}">
+            </a>
+          {% endfor %}
+        {% endwith %}
+      </div>
+    </div>
+  </div>
+</div>

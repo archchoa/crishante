@@ -28,7 +28,8 @@
     .workList:nth-child(odd) {
       background-color: #F5F5F5;
     }
-    .portfolioHeaderContainer {
+    .portfolioHeaderContainer,
+    .portfolioInnerHeaderContainer {
       padding-bottom: 36px;
     }
     .portfolioHeader {
@@ -38,6 +39,14 @@
     .portfolioSubheader {
       color: rgba(0, 0, 0, 0.75);
       font-size: 1rem;
+    }
+    .portfolioInnerHeader {
+      color: rgba(0, 0, 0, 0.75);
+      font-size: 1.25rem;
+    }
+    .portfolioInnerSubheader {
+      color: rgba(0, 0, 0, 0.75);
+      font-size: .5rem;
     }
     .carouselImage {
       height: 550px;
@@ -142,46 +151,15 @@
             <h2 class="portfolioHeader neutraBold">{{ section.title }}</h2>
             <p class="portfolioSubheader neutra">{{ section.description }}</p>
           </div>
-          <div id="carouselContainer" class="container-fluid">
-            <div class="row">
-              <div class="col-lg-8 col-md-12 removePadding">
-                <div class="carousel slide" data-ride="carousel" id="carousel-{{ forloop.counter }}">
-                  <div class="carousel-inner">
-                    {% for photo in section.photo_set.all %}
-                      <div class="carousel-item{% if forloop.first %} active{% endif %}">
-                        <img class="carouselImage d-block w-100" src="{{ photo.image.url }}" alt="Alt text">
-                        {% if photo.title %}
-                        <div class="carousel-caption d-none d-md-block carouselCaption">
-                          <h3 class="carouselHeader neutra">{{ photo.title }}</h3>
-                          <p class="carouselDescription neutra">{{ photo.description }}</p>
-                        </div>
-                        {% endif %}
-                      </div>
-                    {% endfor %}
-                  </div>
-                  <a class="carousel-control-prev" role="button" data-slide="prev" href="#carousel-{{ forloop.counter }}">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                  </a>
-                  <a class="carousel-control-next" role="button" data-slide="next" href="#carousel-{{ forloop.counter }}">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                  </a>
-                </div>
-              </div>
-              <div class="col-lg-4 col-md-12">
-                <div class="carouselSubImages">
-                  {% with carouselIndex=forloop.counter %}
-                    {% for photo in section.photo_set.all %}
-                      <a data-carousel="carousel-{{ carouselIndex }}" data-slide-to="{{ forloop.counter }}" class="carouselLink">
-                        <img class="carouselSubImage" src="{{ photo.image.url }}">
-                      </a>
-                    {% endfor %}
-                  {% endwith %}
-                </div>
-              </div>
-            </div>
-          </div>
+          {% for subsection in section.subsection_set.all %}
+            {% with title=subsection.title description=subsection.description photos=subsection.subsectionphoto_set.all %}
+              {% include 'gallery/subsection_list.html' %}
+            {% endwith %}
+            {% empty %}
+            {% with photos=section.photo_set.all %}
+              {% include 'gallery/subsection_list.html' %}
+            {% endwith %}
+          {% endfor %}
         </div>
       </div>
     {% endfor %}
