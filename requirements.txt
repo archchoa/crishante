@@ -12,10 +12,10 @@ django-debug-toolbar==1.9.1
 django-environ==0.4.5
 django-picklefield==1.1.0
 django-widget-tweaks==1.4.3
-django==2.1.2
+django==2.2.10
 honcho==1.0.1
 pillow==5.3.0
 psycopg2==2.7.5
 pytz==2018.7              # via django
-sqlparse==0.2.4           # via django-debug-toolbar
+sqlparse==0.2.4           # via django, django-debug-toolbar
 whitenoise==4.1
