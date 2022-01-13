@@ -4,18 +4,37 @@
 #
 #    pip-compile --output-file requirements.txt requirements.in
 #
-django-active-link==0.1.5
-django-admin-sortable==2.1.9
-django-constance==2.3.1
-django-contact-form==1.6
-django-debug-toolbar==1.9.1
-django-environ==0.4.5
-django-picklefield==1.1.0
-django-widget-tweaks==1.4.3
 django==2.1.2
+    # via
+    #   -r requirements.in
+    #   django-admin-sortable
+    #   django-contact-form
+    #   django-debug-toolbar
+django-active-link==0.1.5
+    # via -r requirements.in
+django-admin-sortable==2.1.9
+    # via -r requirements.in
+django-constance==2.3.1
+    # via -r requirements.in
+django-contact-form==1.6
+    # via -r requirements.in
+django-debug-toolbar==1.9.1
+    # via -r requirements.in
+django-environ==0.4.5
+    # via -r requirements.in
+django-picklefield==1.1.0
+    # via -r requirements.in
+django-widget-tweaks==1.4.3
+    # via -r requirements.in
 honcho==1.0.1
-pillow==5.3.0
+    # via -r requirements.in
+pillow==9.0.0
+    # via -r requirements.in
 psycopg2==2.7.5
-pytz==2018.7              # via django
-sqlparse==0.2.4           # via django-debug-toolbar
+    # via -r requirements.in
+pytz==2018.7
+    # via django
+sqlparse==0.2.4
+    # via django-debug-toolbar
 whitenoise==4.1
+    # via -r requirements.in
